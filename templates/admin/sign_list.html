@@ -1,0 +1,37 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Signs{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Signs</h1>
+    <p class="subtitle">Alphabet letters and basic signs shown in Learn, Practice and Tests.</p>
+  </div>
+  <a href="{% url 'adminpanel:sign_create' %}" class="btn btn-primary">+ Add sign</a>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Order</th><th>Name</th><th>Category</th><th>Letter</th><th>Difficulty</th><th>Image</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for sign in signs %}
+      <tr>
+        <td>{{ sign.order }}</td>
+        <td>{{ sign.name }}</td>
+        <td><span class="badge badge-gray">{{ sign.get_category_display }}</span></td>
+        <td>{{ sign.letter|default:"—" }}</td>
+        <td>{{ sign.get_difficulty_display }}</td>
+        <td>{% if sign.image %}✓{% else %}—{% endif %}</td>
+        <td class="actions">
+          <a href="{% url 'adminpanel:sign_edit' sign.id %}" class="btn btn-secondary btn-sm">Edit</a>
+          <a href="{% url 'adminpanel:sign_delete' sign.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr class="empty-row"><td colspan="7">No signs yet — add the first one.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

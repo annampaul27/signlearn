@@ -1,0 +1,28 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Admin dashboard</h1>
+<p class="subtitle">A quick look at what's in SignLearn right now.</p>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="stat-value">{{ total_users }}</div><div class="stat-label">Users</div></div>
+  <div class="stat-card"><div class="stat-value">{{ total_signs }}</div><div class="stat-label">Signs</div></div>
+  <div class="stat-card"><div class="stat-value">{{ total_tests }}</div><div class="stat-label">Tests</div></div>
+  <div class="stat-card"><div class="stat-value">{{ total_practice_attempts }}</div><div class="stat-label">Practice Attempts</div></div>
+  <div class="stat-card"><div class="stat-value">{{ total_test_attempts }}</div><div class="stat-label">Test Attempts</div></div>
+</div>
+
+<div class="card">
+  <h2>Recently joined</h2>
+  <table>
+    <thead><tr><th>Username</th><th>Email</th><th>Joined</th></tr></thead>
+    <tbody>
+      {% for u in recent_users %}
+      <tr><td>{{ u.username }}</td><td>{{ u.email }}</td><td>{{ u.date_joined|date:"d M, H:i" }}</td></tr>
+      {% empty %}
+      <tr class="empty-row"><td colspan="3">No users yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

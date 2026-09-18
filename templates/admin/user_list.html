@@ -1,0 +1,42 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Users</h1>
+    <p class="subtitle">Everyone with a SignLearn account.</p>
+  </div>
+  <a href="{% url 'adminpanel:user_create' %}" class="btn btn-primary">+ Add user</a>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr><th>Username</th><th>Email</th><th>Points</th><th>Role</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td>{{ u.username }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.total_points|default:0 }}</td>
+        <td>
+          {% if u.is_staff %}<span class="badge badge-green">Admin</span>
+          {% else %}<span class="badge badge-gray">Learner</span>{% endif %}
+        </td>
+        <td>
+          {% if u.is_active %}<span class="badge badge-green">Active</span>
+          {% else %}<span class="badge badge-gray">Disabled</span>{% endif %}
+        </td>
+        <td class="actions">
+          <a href="{% url 'adminpanel:user_edit' u.id %}" class="btn btn-secondary btn-sm">Edit</a>
+          {% if u.id != request.user.id %}
+          <a href="{% url 'adminpanel:user_delete' u.id %}" class="btn btn-danger btn-sm">Delete</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr class="empty-row"><td colspan="6">No users yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

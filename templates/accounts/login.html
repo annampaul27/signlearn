@@ -10,10 +10,14 @@ Login | SignLearn
 
     <div class="auth-card">
 
-        <h1>Welcome back</h1>
+        <h1>{% if admin_login %}Admin Login{% else %}Welcome back{% endif %}</h1>
 
         <p class="auth-subtitle">
-            Login to continue learning.
+            {% if admin_login %}
+                Login to access the SignLearn admin panel.
+            {% else %}
+                Login to continue learning.
+            {% endif %}
         </p>
 
         {% if error %}

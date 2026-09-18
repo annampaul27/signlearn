@@ -47,8 +47,13 @@ def register_view(request):
 
 
 def login_view(request):
+    admin_login = request.resolver_match.url_name == "admin_login"
 
     if request.user.is_authenticated:
+        # Send already-logged-in staff straight back to the admin panel
+        # rather than the learner dashboard.
+        if request.user.is_staff:
+            return redirect("adminpanel:dashboard")
         return redirect("dashboard")
 
     if request.method == "POST":
@@ -66,15 +71,23 @@ def login_view(request):
 
             login(request, user)
 
+            # Same login form for everyone. Staff accounts land in the
+            # admin panel instead of the regular learner dashboard.
+            if user.is_staff:
+                return redirect("adminpanel:dashboard")
+
             return redirect("dashboard")
 
         return render(
             request,
             "accounts/login.html",
-            {"error": "Invalid username or password."}
+            {
+                "error": "Invalid username or password.",
+                "admin_login": admin_login,
+            }
         )
 
-    return render(request, "accounts/login.html")
+    return render(request, "accounts/login.html", {"admin_login": admin_login})
 
 
 def logout_view(request):

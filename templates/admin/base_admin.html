@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Admin{% endblock %} | SignLearn</title>
+<style>
+  :root {
+    --green: #58CC02;
+    --green-dark: #4CAF00;
+    --green-deep: #3C9800;
+    --blue: #1CB0F6;
+    --gold: #FFC800;
+    --red: #FF4B4B;
+    --ink: #3C3C3C;
+    --gray: #777777;
+    --light: #F7F7F7;
+    --border: #E5E5E5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--ink);
+  }
+  a { color: inherit; }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .navbar .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--green);
+    text-decoration: none;
+  }
+  .navbar .right { display: flex; align-items: center; gap: 20px; }
+  .navbar .right a { text-decoration: none; font-weight: bold; font-size: 14px; color: var(--ink); }
+  .navbar .logout {
+    background: var(--green);
+    color: #fff !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+  .subnav {
+    display: flex;
+    gap: 8px;
+    padding: 16px 32px 0;
+    background: var(--light);
+    flex-wrap: wrap;
+  }
+  .subnav a {
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: bold;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid var(--border);
+  }
+  .subnav a.active { background: var(--green); color: #fff; border-color: var(--green); }
+  .container { padding: 32px; max-width: 1100px; margin: 0 auto; }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  h2 { font-size: 18px; margin: 0 0 16px; }
+  .subtitle { color: var(--gray); margin: 0 0 24px; font-size: 14px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  th { color: var(--gray); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+  tr:last-child td { border-bottom: none; }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--green); color: #fff; }
+  .btn-secondary { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+  .btn-danger { background: var(--red); color: #fff; }
+  .btn-sm { padding: 6px 14px; font-size: 12px; }
+  .page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: #fff; border-radius: 14px; border: 1px solid var(--border); padding: 20px; text-align: center; }
+  .stat-value { font-size: 26px; font-weight: bold; color: var(--green-deep); }
+  .stat-label { font-size: 11px; color: var(--gray); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px; }
+  form .field { margin-bottom: 18px; }
+  label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 14px; }
+  input[type=text], input[type=email], input[type=password], input[type=number],
+  textarea, select, input[type=file] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  input[type=checkbox] { width: auto; margin-right: 8px; }
+  .help-text { margin: 4px 0 0; font-size: 12px; color: var(--gray); }
+  .messages { margin-bottom: 20px; }
+  .message { padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; font-size: 14px; }
+  .message.success { background: #EAFBDD; color: var(--green-deep); }
+  .message.error { background: #FFE3E3; color: #B3261E; }
+  .actions { display: flex; gap: 8px; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+  .badge-green { background: #EAFBDD; color: var(--green-deep); }
+  .badge-gray { background: #EEEEEE; color: var(--gray); }
+  .empty-row td { color: var(--gray); text-align: center; padding: 24px; }
+</style>
+</head>
+<body>
+  <div class="navbar">
+    <a class="logo" href="{% url 'adminpanel:dashboard' %}">SignLearn Admin</a>
+    <div class="right">
+      <a href="/">&larr; Back to site</a>
+      <a href="/accounts/logout/" class="logout">Logout</a>
+    </div>
+  </div>
+  <div class="subnav">
+    <a href="{% url 'adminpanel:dashboard' %}" class="{% if active == 'dashboard' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'adminpanel:sign_list' %}" class="{% if active == 'signs' %}active{% endif %}">Signs</a>
+    <a href="{% url 'adminpanel:test_list' %}" class="{% if active == 'tests' %}active{% endif %}">Tests</a>
+    <a href="{% url 'adminpanel:user_list' %}" class="{% if active == 'users' %}active{% endif %}">Users</a>
+    <a href="{% url 'adminpanel:settings_edit' %}" class="{% if active == 'settings' %}active{% endif %}">Settings</a>
+  </div>
+  <div class="container">
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

@@ -12,6 +12,7 @@ urlpatterns = [
     path("recognition/", include("recognition.urls")),
     path("tests/", include("tests_app.urls")),
     path("practice/", include("practice.urls")),
+    path("manage/", include("adminpanel.urls"))
 ]
 
 

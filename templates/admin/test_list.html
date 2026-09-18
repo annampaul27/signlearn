@@ -1,0 +1,35 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Tests{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div>
+    <h1>Tests</h1>
+    <p class="subtitle">
+      Test configurations shown on the Tests page. Questions aren't stored individually —
+      each attempt pulls random letters from your Signs, so keep Signs up to date.
+    </p>
+  </div>
+  <a href="{% url 'adminpanel:test_create' %}" class="btn btn-primary">+ Add test</a>
+</div>
+
+<div class="card">
+  <table>
+    <thead><tr><th>Name</th><th>Category</th><th># Questions</th><th></th></tr></thead>
+    <tbody>
+      {% for test in tests %}
+      <tr>
+        <td>{{ test.name }}</td>
+        <td><span class="badge badge-gray">{{ test.get_category_display }}</span></td>
+        <td>{{ test.num_questions }}</td>
+        <td class="actions">
+          <a href="{% url 'adminpanel:test_edit' test.id %}" class="btn btn-secondary btn-sm">Edit</a>
+          <a href="{% url 'adminpanel:test_delete' test.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr class="empty-row"><td colspan="4">No tests yet — add the first one.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
