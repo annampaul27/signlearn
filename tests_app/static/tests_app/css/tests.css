@@ -1,0 +1,321 @@
+/* =========================================================
+   TESTS APP — matches SignLearn's Duolingo-inspired design
+========================================================= */
+
+
+/* =========================================================
+   TEST LIST
+========================================================= */
+
+.test-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.test-card {
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 18px;
+
+    box-shadow: 0 3px 0 #e5e7eb;
+
+    transition: 0.2s ease;
+}
+
+.test-card:hover {
+    transform: translateY(-5px);
+    border-color: #a9d37e;
+    box-shadow: 0 7px 0 #dceacb, 0 15px 25px rgba(0, 0, 0, 0.06);
+}
+
+.test-card-icon {
+    width: 70px;
+    height: 70px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 16px;
+
+    background: #e8f5d9;
+    color: #58a700;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.test-card h3 {
+    margin-bottom: 8px;
+    font-size: 21px;
+    color: #1f2937;
+}
+
+.test-card p {
+    margin-bottom: 12px;
+    color: #737b85;
+    font-size: 15px;
+}
+
+.test-card-meta {
+    display: block;
+    margin-bottom: 20px;
+
+    color: #89919a;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.test-card-btn {
+    width: 100%;
+}
+
+.test-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #737b85;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   TEST RUN (camera page) + RESULT — shared page wrapper
+========================================================= */
+
+.test-run-page {
+    min-height: calc(100vh - 150px);
+    padding: 70px 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background:
+        radial-gradient(circle at top left, #edf8df 0, transparent 35%),
+        #f7f9f7;
+}
+
+.test-run-card,
+.test-result-card {
+    width: 100%;
+    max-width: 560px;
+
+    padding: 40px;
+
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 22px;
+
+    box-shadow: 0 6px 0 #e5e7eb, 0 20px 45px rgba(0, 0, 0, 0.07);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TEST RUN — header row, target letter, camera, status
+========================================================= */
+
+.test-run-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.test-progress {
+    color: #89919a;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.test-target {
+    margin-bottom: 22px;
+}
+
+.test-target-label {
+    margin-bottom: 6px;
+    color: #737b85;
+    font-size: 15px;
+}
+
+.target-letter {
+    color: #58a700;
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.test-camera-wrap {
+    position: relative;
+    width: 100%;
+
+    margin-bottom: 18px;
+
+    border: 2px solid #e5e7eb;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: #1f2937;
+
+    box-shadow: 0 5px 0 #e5e7eb;
+}
+
+#input-video {
+    display: block;
+    width: 100%;
+    transform: scaleX(-1);
+}
+
+.test-status {
+    min-height: 3rem;
+    margin-bottom: 10px;
+}
+
+#status-text {
+    color: #374151;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#prediction-text {
+    color: #58a700;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.test-score {
+    color: #4b5563;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESULT PAGE
+========================================================= */
+
+.test-result-card h1 {
+    margin: 14px 0 4px;
+    color: #1f2937;
+    font-size: 34px;
+}
+
+.test-result-subtitle {
+    margin-bottom: 26px;
+    color: #737b85;
+    font-size: 16px;
+}
+
+.result-score-box {
+    margin-bottom: 30px;
+    padding: 22px;
+
+    background: #e8f5d9;
+    border-radius: 18px;
+}
+
+.score-big {
+    color: #58a700;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.score-accuracy {
+    margin-top: 4px;
+    color: #478900;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.result-breakdown-heading {
+    margin-bottom: 14px;
+    color: #1f2937;
+    font-size: 20px;
+    text-align: left;
+}
+
+.result-table {
+    width: 100%;
+    margin-bottom: 28px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.result-table th {
+    padding: 10px;
+
+    background: #f7f9f7;
+    color: #89919a;
+
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.result-table td {
+    padding: 10px;
+
+    border-bottom: 1px solid #eef0f2;
+
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.result-table tr:last-child td {
+    border-bottom: none;
+}
+
+.result-table tr.correct td {
+    background: #f0f9e9;
+}
+
+.result-table tr.incorrect td {
+    background: #fff5f5;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+    .test-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .test-run-card,
+    .test-result-card {
+        padding: 26px 20px;
+        border-radius: 18px;
+    }
+
+    .target-letter {
+        font-size: 56px;
+    }
+}

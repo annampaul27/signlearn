@@ -1,0 +1,63 @@
+/* Reference sign image */
+.practice-reference {
+    margin-bottom: 18px;
+}
+
+.practice-reference img {
+    max-width: 160px;
+    max-height: 160px;
+    border-radius: 14px;
+    border: 2px solid #e5e7eb;
+}
+
+#feedback-text {
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.feedback-correct {
+    color: #58a700;
+}
+
+.feedback-incorrect {
+    color: #d93025;
+}
+
+/* Dashboard stat cards */
+.practice-stats-grid {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.practice-stat-card {
+    padding: 25px;
+    text-align: center;
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 18px;
+    box-shadow: 0 3px 0 #e5e7eb;
+}
+
+.practice-stat-value {
+    display: block;
+    color: #58a700;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.practice-stat-label {
+    color: #89919a;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@media (max-width: 800px) {
+    .practice-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | SignLearn
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="dashboard-content">
+
+        <span class="badge">
+            Welcome to SignLearn
+        </span>
+
+        <h1>
+            Hello, {{ user.username }} 👋
+        </h1>
+
+        <p>
+            You're ready to start learning sign language.
+        </p>
+
+                <div class="dashboard-actions">
+
+            <a href="{% url 'practice:practice_home' %}" class="primary-btn">
+                Practice Now
+            </a>
+
+            <a href="{% url 'practice:dashboard' %}" class="secondary-btn">
+                Your Progress
+            </a>
+
+            <a href="{% url 'logout' %}" class="secondary-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

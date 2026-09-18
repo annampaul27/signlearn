@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Tests{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tests_app/css/tests.css' %}">
+
+<div class="learning-page">
+    <div class="learning-header">
+        <span class="badge">TESTS</span>
+        <h1>Test Your Knowledge</h1>
+        <p>Show each sign to your camera and see how many you get right.</p>
+    </div>
+
+    <div class="test-grid">
+        {% for test in tests %}
+        <div class="test-card">
+            <div class="test-card-icon">A&rarr;Z</div>
+            <h3>{{ test.name }}</h3>
+            {% if test.description %}<p>{{ test.description }}</p>{% endif %}
+            <span class="test-card-meta">{{ test.num_questions }} questions</span>
+            <a href="{% url 'tests_app:start_test' test.id %}" class="primary-btn test-card-btn">Start Test</a>
+        </div>
+        {% empty %}
+        <p class="test-empty">No tests are available yet. Add one from the Django admin (Tests app).</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

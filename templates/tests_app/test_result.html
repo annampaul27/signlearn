@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Test Result{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tests_app/css/tests.css' %}">
+
+<div class="test-run-page">
+    <div class="test-result-card">
+        <span class="badge">RESULTS</span>
+        <h1>Test Complete!</h1>
+        <p class="test-result-subtitle">{{ attempt.test.name }}</p>
+
+        <div class="result-score-box">
+            <p class="score-big">{{ attempt.score }} / {{ attempt.total_questions }}</p>
+            <p class="score-accuracy">Accuracy: {{ attempt.accuracy }}%</p>
+        </div>
+
+        <h2 class="result-breakdown-heading">Breakdown</h2>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Target</th>
+                    <th>Your Sign</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for answer in answers %}
+                <tr class="{% if answer.is_correct %}correct{% else %}incorrect{% endif %}">
+                    <td>{{ answer.question_index|add:"1" }}</td>
+                    <td>{{ answer.target_letter }}</td>
+                    <td>{{ answer.predicted_letter|default:"&mdash;" }}</td>
+                    <td>{% if answer.is_correct %}&check; Correct{% else %}&cross; Incorrect{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'tests_app:test_list' %}" class="primary-btn">Back to Tests</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Practice{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'practice/css/practice.css' %}">
+<link rel="stylesheet" href="{% static 'tests_app/css/tests.css' %}">
+
+<div class="test-run-page">
+    <div class="test-run-card">
+
+        <div class="test-run-top">
+            <span class="badge">PRACTICE</span>
+            <span class="test-progress">Points: <span id="points-text">{{ total_points }}</span></span>
+        </div>
+
+        <div class="test-target">
+            <p class="test-target-label">Show the sign for</p>
+            <div class="target-letter" id="target-letter">{{ target_letter }}</div>
+        </div>
+
+        {% if sign.image %}
+        <div class="practice-reference">
+            <img src="{{ sign.image.url }}" alt="Reference sign for {{ target_letter }}" id="reference-image">
+        </div>
+        {% endif %}
+
+        <div class="test-camera-wrap">
+            <video id="input-video" autoplay playsinline muted></video>
+            <canvas id="capture-canvas" style="display:none;"></canvas>
+        </div>
+
+        <div class="test-status">
+            <p id="status-text">Loading camera&hellip;</p>
+            <p id="prediction-text"></p>
+            <p id="feedback-text"></p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.SIGNLEARN_PRACTICE = {
+        targetLetter: "{{ target_letter }}",
+        answerUrl: "{% url 'practice:submit_answer' %}",
+        csrfToken: "{{ csrf_token }}",
+        predictUrl: "{% url 'recognition:predict' %}"
+    };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+<script src="{% static 'practice/js/practice_capture.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Practice Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'practice/css/practice.css' %}">
+<link rel="stylesheet" href="{% static 'tests_app/css/tests.css' %}">
+
+<div class="learning-page">
+    <div class="learning-header">
+        <span class="badge">YOUR PROGRESS</span>
+        <h1>Practice Dashboard</h1>
+        <p>Track how you're doing across all your practice sessions.</p>
+    </div>
+
+    <div class="practice-stats-grid">
+        <div class="practice-stat-card">
+            <span class="practice-stat-value">{{ total_points }}</span>
+            <span class="practice-stat-label">Total Points</span>
+        </div>
+        <div class="practice-stat-card">
+            <span class="practice-stat-value">{{ total_attempts }}</span>
+            <span class="practice-stat-label">Signs Attempted</span>
+        </div>
+        <div class="practice-stat-card">
+            <span class="practice-stat-value">{{ accuracy }}%</span>
+            <span class="practice-stat-label">Accuracy</span>
+        </div>
+    </div>
+
+    <h2 class="result-breakdown-heading">Recent Attempts</h2>
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Letter</th>
+                <th>Your Sign</th>
+                <th>Result</th>
+                <th>Points</th>
+                <th>When</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attempt in recent_attempts %}
+            <tr class="{% if attempt.is_correct %}correct{% else %}incorrect{% endif %}">
+                <td>{{ attempt.target_letter }}</td>
+                <td>{{ attempt.predicted_letter|default:"&mdash;" }}</td>
+                <td>{% if attempt.is_correct %}&check; Correct{% else %}&cross; Incorrect{% endif %}</td>
+                <td>{{ attempt.points_awarded }}</td>
+                <td>{{ attempt.created_at|date:"d M, H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No practice attempts yet &mdash; <a href="{% url 'practice:practice_home' %}">start practicing</a>.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'practice:practice_home' %}" class="primary-btn">Practice More</a>
+</div>
+{% endblock %}

@@ -1,0 +1,1570 @@
+
+/* =========================================================
+   SIGNLEARN
+   Duolingo-inspired learning UI
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f9f7;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+main {
+    min-height: calc(100vh - 150px);
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    min-height: 72px;
+
+    padding: 15px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: #58a700;
+
+    font-size: 26px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    letter-spacing: -0.8px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.nav-links a {
+    padding: 9px 13px;
+
+    text-decoration: none;
+
+    color: #4b5563;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #58a700;
+    background: #f0f7e8;
+}
+
+
+/* =========================================================
+   NAV BUTTONS
+========================================================= */
+
+.login-btn {
+    border: 2px solid #e5e7eb;
+
+    background: #ffffff;
+
+    color: #4b5563 !important;
+}
+
+.login-btn:hover {
+    border-color: #58a700;
+    color: #58a700 !important;
+    background: #ffffff !important;
+}
+
+.register-btn {
+    background: #58a700;
+
+    color: #ffffff !important;
+
+    border: 2px solid #58a700;
+
+    box-shadow: 0 3px 0 #478900;
+}
+
+.register-btn:hover {
+    background: #61b509 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   COMMON BADGE
+========================================================= */
+
+.badge {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    border-radius: 999px;
+
+    background: #e8f5d9;
+
+    color: #58a700;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   COMMON BUTTONS
+========================================================= */
+
+.primary-btn,
+.secondary-btn {
+    display: inline-block;
+
+    padding: 13px 24px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    transition: all 0.15s ease;
+
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: #58a700;
+
+    color: #ffffff;
+
+    border: 2px solid #58a700;
+
+    box-shadow: 0 4px 0 #478900;
+}
+
+.primary-btn:hover {
+    background: #61b509;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 0 #478900;
+}
+
+.primary-btn:active {
+    transform: translateY(3px);
+
+    box-shadow: 0 1px 0 #478900;
+}
+
+.secondary-btn {
+    background: #ffffff;
+
+    color: #4b5563;
+
+    border: 2px solid #d9dee3;
+
+    box-shadow: 0 3px 0 #d9dee3;
+}
+
+.secondary-btn:hover {
+    border-color: #58a700;
+
+    color: #58a700;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 0 #d9dee3;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 30px 8%;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e5e7eb;
+
+    color: #8a929b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   HOME / LANDING PAGE
+========================================================= */
+
+.hero {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 90px 7% 100px;
+
+    display: grid;
+
+    grid-template-columns: 1.15fr 0.85fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* Hero text */
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-content h1 {
+    margin: 22px 0 20px;
+
+    font-size: clamp(42px, 5vw, 64px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+
+    color: #1f2937;
+}
+
+.hero-content h1 span {
+    display: block;
+
+    color: #58a700;
+}
+
+.hero-content > p {
+    max-width: 590px;
+
+    margin-bottom: 30px;
+
+    color: #6b7280;
+
+    font-size: 18px;
+
+    line-height: 1.75;
+}
+
+
+/* Hero buttons */
+
+.hero-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-card {
+    width: 100%;
+
+    max-width: 360px;
+
+    padding: 35px;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 0 #e5e7eb,
+        0 18px 35px rgba(0, 0, 0, 0.06);
+
+    transform: rotate(1deg);
+
+    transition: 0.2s ease;
+}
+
+.sign-card:hover {
+    transform: rotate(0deg) translateY(-5px);
+
+    box-shadow:
+        0 12px 0 #e5e7eb,
+        0 25px 45px rgba(0, 0, 0, 0.08);
+}
+
+.hand-placeholder {
+    width: 180px;
+    height: 180px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 30px;
+
+    background: #e8f5d9;
+
+    color: #58a700;
+
+    font-size: 100px;
+
+    font-weight: 800;
+}
+
+.sign-card h3 {
+    margin-bottom: 8px;
+
+    color: #1f2937;
+
+    font-size: 21px;
+}
+
+.sign-card p {
+    color: #7b8490;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features {
+    padding: 90px 7% 110px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #edf0ed;
+}
+
+.section-heading {
+    max-width: 700px;
+
+    margin: 0 auto 55px;
+
+    text-align: center;
+}
+
+.section-heading > span {
+    color: #58a700;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.section-heading h2 {
+    margin: 12px 0;
+
+    color: #1f2937;
+
+    font-size: 38px;
+
+    line-height: 1.2;
+}
+
+.section-heading p {
+    color: #737b85;
+
+    font-size: 17px;
+}
+
+
+/* Feature grid */
+
+.feature-grid {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.feature-card {
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    transition: 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #b9d997;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.feature-number {
+    margin-bottom: 20px;
+
+    color: #58a700;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 23px;
+}
+
+.feature-card p {
+    color: #737b85;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   AUTH - LOGIN / REGISTER
+========================================================= */
+
+.auth-container {
+    min-height: calc(100vh - 150px);
+
+    padding: 70px 20px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #edf8df 0,
+            transparent 35%
+        ),
+        #f7f9f7;
+}
+
+.auth-card {
+    width: 100%;
+
+    max-width: 440px;
+
+    padding: 40px;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 6px 0 #e5e7eb,
+        0 20px 45px rgba(0, 0, 0, 0.07);
+}
+
+.auth-card h1 {
+    margin-bottom: 8px;
+
+    color: #1f2937;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+}
+
+.auth-subtitle {
+    margin-bottom: 28px;
+
+    color: #7a838d;
+
+    font-size: 15px;
+}
+
+
+/* Form */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 2px solid #dfe4e8;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #a0a7ae;
+}
+
+.form-group input:focus {
+    border-color: #58a700;
+
+    box-shadow: 0 0 0 3px #e8f5d9;
+}
+
+
+/* Auth button */
+
+.auth-button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #58a700;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 0 #478900;
+
+    transition: 0.15s ease;
+}
+
+.auth-button:hover {
+    background: #61b509;
+
+    transform: translateY(-1px);
+}
+
+.auth-button:active {
+    transform: translateY(3px);
+
+    box-shadow: 0 1px 0 #478900;
+}
+
+
+/* Auth footer */
+
+.auth-footer {
+    margin-top: 25px;
+
+    text-align: center;
+
+    color: #7a838d;
+
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: #58a700;
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Error */
+
+.error-message {
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    background: #fff0f0;
+
+    border: 1px solid #ffcaca;
+
+    color: #d93025;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard {
+    min-height: calc(100vh - 150px);
+
+    padding: 90px 7%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #e8f5d9 0,
+            transparent 30%
+        ),
+        #f7f9f7;
+}
+
+.dashboard-content {
+    width: 100%;
+
+    max-width: 850px;
+
+    padding: 55px;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 7px 0 #e5e7eb,
+        0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-content h1 {
+    margin: 20px 0 10px;
+
+    color: #1f2937;
+
+    font-size: 42px;
+
+    letter-spacing: -1px;
+}
+
+.dashboard-content > p {
+    margin-bottom: 30px;
+
+    color: #737b85;
+
+    font-size: 17px;
+}
+
+.dashboard-actions {
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   LEARNING PAGE
+========================================================= */
+
+.learning-page {
+    padding: 75px 7% 90px;
+}
+
+.learning-header {
+    max-width: 750px;
+
+    margin: 0 auto 50px;
+
+    text-align: center;
+}
+
+.learning-header h1 {
+    margin: 20px 0 12px;
+
+    color: #1f2937;
+
+    font-size: 48px;
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+}
+
+.learning-header p {
+    color: #737b85;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ALPHABET GRID
+========================================================= */
+
+.alphabet-grid {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 18px;
+}
+
+.letter-card {
+    min-height: 180px;
+
+    padding: 25px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: #1f2937;
+
+    transition: 0.2s ease;
+
+    box-shadow: 0 3px 0 #e5e7eb;
+}
+
+.letter-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #a9d37e;
+
+    box-shadow:
+        0 7px 0 #dceacb,
+        0 15px 25px rgba(0, 0, 0, 0.06);
+}
+
+.letter {
+    margin-bottom: 10px;
+
+    color: #58a700;
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+.letter-card h3 {
+    margin-bottom: 7px;
+
+    font-size: 17px;
+}
+
+.letter-card span {
+    color: #89919a;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ALPHABET VIDEO
+========================================================= */
+
+.alphabet-video-section {
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto 90px;
+
+    padding: 0 20px;
+}
+
+.alphabet-video-header {
+    margin-bottom: 35px;
+
+    text-align: center;
+}
+
+.alphabet-video-header h2 {
+    margin: 15px 0 10px;
+
+    color: #1f2937;
+
+    font-size: 36px;
+}
+
+.alphabet-video-header p {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: #737b85;
+
+    font-size: 16px;
+}
+
+.alphabet-video-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    background: #1f2937;
+
+    box-shadow:
+        0 7px 0 #e5e7eb,
+        0 20px 35px rgba(0, 0, 0, 0.07);
+}
+
+.alphabet-video-wrapper iframe {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
+
+
+/* =========================================================
+   SIGN DETAIL
+========================================================= */
+
+.sign-detail-page {
+    padding: 70px 7% 90px;
+}
+
+.sign-detail-card {
+    max-width: 1050px;
+
+    margin: 0 auto;
+}
+
+.sign-detail-header {
+    margin-bottom: 40px;
+}
+
+.sign-detail-header h1 {
+    margin: 18px 0 8px;
+
+    color: #1f2937;
+
+    font-size: 50px;
+
+    line-height: 1.1;
+}
+
+.sign-detail-header p {
+    color: #737b85;
+
+    font-size: 17px;
+}
+
+.sign-detail-header strong {
+    color: #58a700;
+}
+
+
+/* =========================================================
+   SIGN LEARNING CONTENT
+========================================================= */
+
+.sign-learning-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 45px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   SIGN IMAGE
+========================================================= */
+
+.sign-image-container {
+    min-height: 420px;
+
+    padding: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    box-shadow: 0 5px 0 #e5e7eb;
+}
+
+.sign-image {
+    max-width: 100%;
+
+    max-height: 380px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+
+/* =========================================================
+   IMAGE PLACEHOLDER
+========================================================= */
+
+.image-placeholder {
+    text-align: center;
+
+    color: #89919a;
+}
+
+.image-placeholder span {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: #58a700;
+
+    font-size: 120px;
+
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   SIGN INFORMATION
+========================================================= */
+
+.sign-information {
+    padding: 35px;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    box-shadow: 0 5px 0 #e5e7eb;
+}
+
+.sign-information h2 {
+    margin-bottom: 18px;
+
+    color: #1f2937;
+
+    font-size: 28px;
+}
+
+.sign-information > p {
+    color: #737b85;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   SIGN META
+========================================================= */
+
+.sign-meta {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 2px solid #eef0f2;
+}
+
+.sign-meta span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #89919a;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.sign-meta strong {
+    color: #58a700;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   SIGN NAVIGATION
+========================================================= */
+
+.sign-actions {
+    width: 100%;
+
+    margin-top: 45px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.sign-actions a {
+    display: block;
+
+    padding: 13px 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    text-align: center;
+
+    transition: all 0.15s ease;
+}
+
+.sign-actions .secondary-btn {
+    background: #ffffff;
+
+    color: #4b5563;
+
+    border: 2px solid #d9dee3;
+
+    box-shadow: 0 3px 0 #d9dee3;
+}
+
+.sign-actions .primary-btn {
+    background: #58a700;
+
+    color: #ffffff;
+
+    border: 2px solid #58a700;
+
+    box-shadow: 0 3px 0 #478900;
+}
+
+
+/* Keep Previous left */
+
+.sign-actions a:first-child {
+    justify-self: start;
+}
+
+
+/* Center Back button */
+
+.sign-actions a:nth-child(2) {
+    justify-self: center;
+}
+
+
+/* Keep Next right */
+
+.sign-actions a:last-child {
+    justify-self: end;
+}
+
+.sign-actions a:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .alphabet-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 50px;
+    }
+
+    .hero-content {
+        margin: 0 auto;
+    }
+
+    .hero-content > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .sign-learning-content {
+        grid-template-columns: 1fr;
+    }
+
+    .sign-detail-header h1 {
+        font-size: 42px;
+    }
+
+    .dashboard-content {
+        padding: 40px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* Navbar */
+
+    .navbar {
+        padding: 15px 18px;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 5px;
+    }
+
+    .nav-links a {
+        padding: 8px 9px;
+
+        font-size: 13px;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        padding: 60px 20px 70px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+
+        letter-spacing: -1.5px;
+    }
+
+    .hero-content > p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .sign-card {
+        max-width: 320px;
+
+        padding: 28px;
+    }
+
+    .hand-placeholder {
+        width: 150px;
+        height: 150px;
+
+        font-size: 80px;
+    }
+
+
+    /* Features */
+
+    .features {
+        padding: 70px 20px 80px;
+    }
+
+    .section-heading h2 {
+        font-size: 31px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Auth */
+
+    .auth-container {
+        padding: 50px 18px;
+    }
+
+    .auth-card {
+        padding: 30px 22px;
+
+        border-radius: 18px;
+    }
+
+    .auth-card h1 {
+        font-size: 28px;
+    }
+
+
+    /* Dashboard */
+
+    .dashboard {
+        padding: 50px 18px;
+    }
+
+    .dashboard-content {
+        padding: 30px 22px;
+
+        border-radius: 20px;
+    }
+
+    .dashboard-content h1 {
+        font-size: 32px;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+
+    .dashboard-actions a {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    /* Learning */
+
+    .learning-page {
+        padding: 55px 18px 70px;
+    }
+
+    .learning-header h1 {
+        font-size: 36px;
+    }
+
+    .learning-header p {
+        font-size: 16px;
+    }
+
+
+    /* Alphabet */
+
+    .alphabet-grid {
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 10px;
+    }
+
+    .letter-card {
+        min-height: 140px;
+
+        padding: 18px 8px;
+
+        border-radius: 14px;
+    }
+
+    .letter {
+        font-size: 36px;
+    }
+
+    .letter-card h3 {
+        font-size: 14px;
+    }
+
+    .letter-card span {
+        font-size: 10px;
+    }
+
+
+    /* Video */
+
+    .alphabet-video-section {
+        margin-bottom: 60px;
+
+        padding: 0 15px;
+    }
+
+    .alphabet-video-header h2 {
+        font-size: 29px;
+    }
+
+    .alphabet-video-header p {
+        font-size: 15px;
+    }
+
+    .alphabet-video-wrapper {
+        border-radius: 16px;
+    }
+
+
+    /* Sign detail */
+
+    .sign-detail-page {
+        padding: 50px 18px 70px;
+    }
+
+    .sign-detail-header h1 {
+        font-size: 38px;
+    }
+
+    .sign-detail-header p {
+        font-size: 16px;
+    }
+
+    .sign-image-container {
+        min-height: 300px;
+
+        padding: 20px;
+    }
+
+    .sign-image {
+        max-height: 300px;
+    }
+
+    .sign-information {
+        padding: 25px 20px;
+    }
+
+    .sign-information h2 {
+        font-size: 24px;
+    }
+
+
+    /* Sign navigation */
+
+    .sign-actions {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        width: 100%;
+    }
+
+    .sign-actions a,
+    .sign-actions a:first-child,
+    .sign-actions a:nth-child(2),
+    .sign-actions a:last-child {
+        width: 100%;
+
+        margin: 0;
+
+        justify-self: auto;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .alphabet-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+}

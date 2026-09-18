@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ attempt.test.name }} - Question {{ question_number }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tests_app/css/tests.css' %}">
+
+<div class="test-run-page">
+    <div class="test-run-card">
+
+        <div class="test-run-top">
+            <span class="badge">{{ attempt.test.name|upper }}</span>
+            <span class="test-progress">Question {{ question_number }} of {{ total_questions }}</span>
+        </div>
+
+        <div class="test-target">
+            <p class="test-target-label">Show the sign for</p>
+            <div class="target-letter" id="target-letter">{{ target_letter }}</div>
+        </div>
+
+        <div class="test-camera-wrap">
+            <video id="input-video" autoplay playsinline muted></video>
+            <canvas id="capture-canvas" style="display:none;"></canvas>
+        </div>
+
+        <div class="test-status">
+            <p id="status-text">Loading camera&hellip;</p>
+            <p id="prediction-text"></p>
+        </div>
+
+        <div class="test-score">
+            Score so far: <span id="score-text">{{ attempt.score }}</span> / {{ question_number|add:"-1" }}
+        </div>
+    </div>
+</div>
+
+<script>
+    window.SIGNLEARN_TEST = {
+        attemptId: {{ attempt.id }},
+        targetLetter: "{{ target_letter }}",
+        answerUrl: "{% url 'tests_app:submit_answer' attempt.id %}",
+        resultUrl: "{% url 'tests_app:test_result' attempt.id %}",
+        csrfToken: "{{ csrf_token }}",
+        predictUrl: "{% url 'recognition:predict' %}"
+    };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+<script src="{% static 'recognition/js/hand_capture.js' %}"></script>
+{% endblock %}

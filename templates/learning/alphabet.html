@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}
+Learn the Alphabet | SignLearn
+{% endblock %}
+
+{% block content %}
+
+<section class="learning-page">
+
+<div class="learning-header">
+
+    <span class="badge">
+        LEARN
+    </span>
+
+    <h1>
+        Learn the Alphabet
+    </h1>
+
+    <p>
+        Learn the Indian Sign Language alphabet
+        one letter at a time.
+    </p>
+
+</div>
+
+
+<div class="alphabet-grid">
+
+    {% for sign in signs %}
+
+        <a href="{% url 'sign_detail' sign.id %}" class="letter-card">
+
+            <div class="letter">
+                {{ sign.letter }}
+            </div>
+
+            <h3>
+                {{ sign.name }}
+            </h3>
+
+            <span>
+                {{ sign.difficulty }}
+            </span>
+
+        </a>
+
+    {% empty %}
+
+        <p>
+            No alphabet signs have been added yet.
+        </p>
+
+    {% endfor %}
+
+</div>
+
+
+</section>
+
+<!-- Alphabet Video -->
+
+<section class="alphabet-video-section">
+
+
+<div class="alphabet-video-header">
+
+    <span class="badge">
+        WATCH &amp; LEARN
+    </span>
+
+    <h2>
+        Learn the ISL Alphabet
+    </h2>
+
+    <p>
+        Watch this video to learn all 26 Indian Sign Language
+        alphabet signs.
+    </p>
+
+</div>
+
+
+<div class="alphabet-video-wrapper">
+
+    <iframe
+    src="https://www.youtube.com/embed/ltzSNNa13W8?rel=0"
+    title="Indian Sign Language Alphabet"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+</iframe>
+
+</div>
+
+</section>
+
+{% endblock %}

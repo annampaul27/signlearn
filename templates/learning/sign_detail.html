@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ sign.name }} | SignLearn
+{% endblock %}
+
+{% block content %}
+
+<section class="sign-detail-page">
+
+    <div class="sign-detail-card">
+
+        <div class="sign-detail-header">
+
+            <span class="badge">
+                {% if sign.category == "alphabet" %}
+                    ALPHABET
+                {% else %}
+                    BASIC SIGN
+                {% endif %}
+            </span>
+
+            <h1>
+                {{ sign.name }}
+            </h1>
+
+            <p>
+                Learn how to make the sign for
+                <strong>{{ sign.name }}</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="sign-learning-content">
+
+            <div class="sign-image-container">
+
+                {% if sign.image %}
+
+                    <img
+                        src="{{ sign.image.url }}"
+                        alt="Indian Sign Language sign for {{ sign.name }}"
+                        class="sign-image"
+                    >
+
+                {% else %}
+
+                    <div class="image-placeholder">
+
+                        <span>
+                            {{ sign.letter|default:sign.name }}
+                        </span>
+
+                        <p>
+                            Sign image will appear here.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="sign-information">
+
+                <h2>
+                    How to make this sign
+                </h2>
+
+                <p>
+                    {{ sign.description }}
+                </p>
+
+                <div class="sign-meta">
+
+                    <div>
+                        <span>Difficulty</span>
+                        <strong>
+                            {{ sign.get_difficulty_display }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="sign-actions">
+            {% if previous_sign %}
+        <a
+            href="{% url 'sign_detail' previous_sign.id %}"
+            class="secondary-btn"
+        >
+            ← Previous
+        </a>
+    {% endif %}
+
+            <a
+        href="{% url 'alphabet' %}"
+        class="secondary-btn"
+    >
+        Back to Alphabet
+    </a>
+
+
+    {% if next_sign %}
+        <a
+            href="{% url 'sign_detail' next_sign.id %}"
+            class="primary-btn"
+        >
+            Next →
+        </a>
+    {% endif %}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

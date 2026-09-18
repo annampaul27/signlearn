@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}About | SignLearn{% endblock %}
+
+{% block content %}
+<div class="learning-page">
+    <div class="learning-header">
+        <span class="badge">ABOUT</span>
+        <h1>About SignLearn</h1>
+        <p>
+            SignLearn is a platform for learning Indian Sign Language (ISL) —
+            starting with the alphabet, and growing into full sign recognition
+            practice and testing powered by computer vision.
+        </p>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-number">01</div>
+            <h3>Learn</h3>
+            <p>Go through the ISL alphabet one letter at a time, with images and descriptions for each sign.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">02</div>
+            <h3>Practice</h3>
+            <p>Use your webcam to practice signs in real time. Our recognition model checks your sign and awards points as you go.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-number">03</div>
+            <h3>Test</h3>
+            <p>Take structured tests to measure how well you know the alphabet, with a full breakdown of your results.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
