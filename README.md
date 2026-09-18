@@ -27,6 +27,7 @@ SignLearn is a Django web application for learning and practising sign language.
 | `static/` | Shared CSS and JavaScript assets |
 | `media/signs/` | Sign media files used by the learning content |
 | `recognition/ml_models/` | Local recognition model files, not included by default |
+| `adminpanel/`|Admin related operation CURD operation via forms |
 
 ## Routes
 
@@ -37,7 +38,7 @@ SignLearn is a Django web application for learning and practising sign language.
 - `/recognition/` - Recognition capture and prediction endpoints
 - `/practice/` - Practice dashboard and capture session
 - `/tests/` - Test list, test-taking, and results
-- `/admin/` - Django administration
+- `/adminpanel/` - Django administration
 
 ## Requirements
 
